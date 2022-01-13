@@ -54,11 +54,25 @@ export const useSqueethPool = () => {
     setQuoterContract(new web3.eth.Contract(quoterABI as any, quoter))
   }, [web3])
 
+  // useEffect(() => {
+  //   if (!squeethContract || !ticks) return
+  //   updateData()
+  //   updatePoolTVL()
+  // }, [squeethContract, ticks?.length])
+
   useEffect(() => {
     if (!squeethContract || !ticks) return
     updateData()
     updatePoolTVL()
-  }, [squeethContract, ticks?.length])
+    console.log("squeethContract")
+  }, [squeethContract])
+
+  useEffect(() => {
+    if (!squeethContract || !ticks) return
+    updateData()
+    updatePoolTVL()
+    console.log("ticks?.length")
+  }, [ticks?.length])
 
   const isWethToken0 = parseInt(weth, 16) < parseInt(wSqueeth, 16)
 
@@ -310,6 +324,8 @@ export const useSqueethPool = () => {
       priceImpact: '0',
     }
 
+    return emptyState
+    
     if (!squeethAmount || !pool) return emptyState
 
     try {

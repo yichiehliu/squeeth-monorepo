@@ -24,23 +24,42 @@ export const useTokenBalance = (token: string, refetchIntervalSec = 30, decimals
     setContract(new web3.eth.Contract(erc20Abi as any, token))
   }, [web3, token])
 
+  // useEffect(() => {
+  //   updateBalance()
+  // }, [address, token, contract])
+
   useEffect(() => {
     updateBalance()
-  }, [address, token, contract])
+    console.log("address..")
+  }, [address])
+
+  useEffect(() => {
+    updateBalance()
+    console.log("token..")
+  }, [token])
+
+  useEffect(() => {
+    updateBalance()
+    console.log("contract..")
+  }, [contract])
 
   const getBalance = useCallback(async () => {
-    if (!contract || !connected) return balance
 
-    const _bal = await contract.methods.balanceOf(address).call({
-      from: address,
-    })
-    return toTokenAmount(new BigNumber(_bal.toString()), decimals)
+    return new BigNumber('1000000000000')
+
+    // if (!contract || !connected) return balance
+
+    // const _bal = await contract.methods.balanceOf(address).call({
+    //   from: address,
+    // })
+    // return toTokenAmount(new BigNumber(_bal.toString()), decimals)
   }, [contract, connected])
 
   const updateBalance = useCallback(async () => {
     if (!token) return
     if (!connected) return
-    const balance = await getBalance()
+    // const balance = await getBalance()
+    const balance = new BigNumber('1000000000000')
     setBalance(balance)
   }, [address, token, getBalance])
 
