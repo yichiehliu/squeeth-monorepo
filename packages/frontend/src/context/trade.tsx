@@ -5,6 +5,7 @@ import { DEFAULT_SLIPPAGE, InputType } from '../constants/index'
 import { useSqueethPool } from '@hooks/contracts/useSqueethPool'
 import { usePnL } from '@hooks/usePositions'
 import { PositionType, TradeType } from '../types'
+import useRenderCounter from '@hooks/useRenderCounter'
 
 type Quote = {
   amountOut: BigNumber
@@ -94,6 +95,7 @@ const tradeContext = React.createContext<tradeContextType>(initialState)
 const useTrade = () => useContext(tradeContext)
 
 const TradeProvider: React.FC = ({ children }) => {
+  useRenderCounter('trade.tsx')
   const [tradeAmount, setTradeAmount] = useState('0')
   const [slippageAmount, setSlippageAmount] = useState(new BigNumber(DEFAULT_SLIPPAGE))
   const [altTradeAmount, setAltTradeAmount] = useState('0')

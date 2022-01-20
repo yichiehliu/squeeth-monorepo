@@ -152,7 +152,8 @@ export const useController = () => {
   const getVault = async (vaultId: number): Promise<Vault | null> => {
     if (!contract) return null
 
-    const vault = await contract.methods.vaults(vaultId).call()
+    // const vault = await contract.methods.vaults(vaultId).call()
+    const vault = 1
     const { NFTCollateralId, collateralAmount, shortAmount, operator } = vault
 
     return {

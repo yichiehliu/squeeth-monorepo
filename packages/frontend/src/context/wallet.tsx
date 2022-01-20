@@ -11,6 +11,7 @@ import useInterval from '@hooks/useInterval'
 import { Networks } from '../types'
 import { Web3Provider } from '@ethersproject/providers'
 
+
 const useAlchemy = process.env.NEXT_PUBLIC_USE_ALCHEMY
 const defaultWeb3 = useAlchemy
   ? new Web3(`https://eth-mainnet.alchemyapi.io/v2/${process.env.NEXT_PUBLIC_ALCHEMY_API_KEY}`)
@@ -20,7 +21,7 @@ type WalletType = {
   web3: Web3
   address: string | null
   networkId: Networks
-  signer: any
+  signer: anys
   selectWallet: () => void
   disconnectWallet: () => void
   connected: boolean
