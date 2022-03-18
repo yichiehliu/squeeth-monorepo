@@ -307,6 +307,14 @@ export const useController = () => {
     return toTokenAmount(shortAmount.toFixed(0), OSQUEETH_DECIMALS)
   }
 
+  const getUniNFTCollatDetail = async (uniId: number) => {
+    const { wethAmount, oSqthAmount, position } = await getETHandOSQTHAmount(uniId)
+    const ethPrice = await getTwapEthPrice()
+    const sqthValueInEth = oSqthAmount.multipliedBy(normFactor).multipliedBy(ethPrice).div(INDEX_SCALE)
+
+    return { collateral: sqthValueInEth.plus(wethAmount), position }
+  }
+
   const getCollatRatioAndLiqPrice = async (collateralAmount: BigNumber, shortAmount: BigNumber, uniId?: number) => {
     const emptyState = {
       collateralPercent: 0,
@@ -318,10 +326,8 @@ export const useController = () => {
     let liquidationPrice = new BigNumber(0)
     // Uni LP token is deposited
     if (uniId) {
-      const { wethAmount, oSqthAmount, position } = await getETHandOSQTHAmount(uniId)
-      const ethPrice = await getTwapEthPrice()
-      const sqthValueInEth = oSqthAmount.multipliedBy(normFactor).multipliedBy(ethPrice).div(INDEX_SCALE)
-      effectiveCollat = effectiveCollat.plus(sqthValueInEth).plus(wethAmount)
+      const { collateral: uniCollat, position } = await getUniNFTCollatDetail(uniId)
+      effectiveCollat = effectiveCollat.plus(uniCollat)
       liquidationPrice = calculateLiquidationPriceForLP(collateralAmount, shortAmount, position!)
     }
     const debt = await getDebtAmount(shortAmount)
@@ -430,5 +436,6 @@ export const useController = () => {
     getTwapEthPrice,
     depositUniPositionToken,
     withdrawUniPositionToken,
+    getUniNFTCollatDetail,
   }
 }
