@@ -1,9 +1,9 @@
 name: Cypress Run
-
 on: [deployment_status]
+
 defaults:
   run:
-    working-directory: ~/squeeth/packages/frontend
+    working-directory: ./packages/frontend
   
 jobs:
   desktop:
