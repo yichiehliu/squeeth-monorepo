@@ -3,7 +3,7 @@ name: Cypress Run
 on: [deployment_status]
 defaults:
   run:
-    working-directory: fontend
+    working-directory: ~/squeeth/packages/frontend
   
 jobs:
   desktop:
