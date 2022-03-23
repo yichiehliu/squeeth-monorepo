@@ -25,5 +25,8 @@ jobs:
       - run: echo "NETWORK_NAME=${{ secrets.NETWORK_NAME }}" >> $GITHUB_ENV
       - run: echo "CYPRESS_RECORD_KEY=${{ secrets.CYPRESS_RECORD_KEY }}" >> $GITHUB_ENV
       - run: yarn run build
-      - run: yarn start
+      - name: Cypress run
+        uses: cypress-io/github-action@v2
+        with:
+          start: yarn start
       - run: yarn run cypress:gh
