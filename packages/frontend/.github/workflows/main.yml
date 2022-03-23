@@ -1,13 +1,13 @@
 name: Cypress Run
 
 on: [deployment_status]
-
+defaults:
+  run:
+    working-directory: fontend
+  
 jobs:
   desktop:
     if: github.event.deployment_status.state == 'success'
-    defaults:
-      run:
-        working-directory: fontend
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -26,7 +26,7 @@ jobs:
       - run: echo "CYPRESS_RECORD_KEY=${{ secrets.CYPRESS_RECORD_KEY }}" >> $GITHUB_ENV
       - name: Cypress tests
         with:
-          working_directory: fontend/cypress
+          working_directory: cypress
           build: yarn run build
           start: yarn start
           wait-on: 'http://localhost:3000'
