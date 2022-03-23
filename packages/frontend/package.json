@@ -14,6 +14,8 @@
         "cypress:mobile:record": "dotenv -e .env.local -e .env.development.local -- synpress run --record --configFile cypress.json --config supportFile='cypress/support/index.js',pluginsFile='cypress/plugins/index.js,viewportWidth=375,viewportHeight=667' -b chromium",
         "cypress:open": "dotenv -e .env.local -- synpress open --configFile cypress.json",
         "cypress:gh": "SECRET_WORDS='can, maple, scatter, onion, purchase, web, gorilla, grass, blur, play, scatter, dinner' NETWORK_NAME=ropsten synpress run --record --configFile cypress.json --config supportFile='cypress/support/index.js',pluginsFile='cypress/plugins/index.js' --group Desktop -b chromium",
+        "start:server": "serve tests/test-dapp -p 3000",
+        "test:e2e:ci": "start-server-and-test http-get://localhost:3000 'yarn run cypress'",
         "cypress:mobile:gh": "synpress run --record --configFile cypress.json --config supportFile='cypress/support/index.js',pluginsFile='cypress/plugins/index.js,viewportWidth=375,viewportHeight=667' --group Mobile -b chromium",
         "codegen:uniswap": "apollo client:codegen --target typescript --globalTypesFile=types/global_apollo.ts --includes=./src/queries/uniswap/**/*.ts  --endpoint 'https://api.thegraph.com/subgraphs/name/kmkoushik/uniswap-v3-ropsten'",
         "codegen:squeeth": "apollo client:codegen --target typescript --globalTypesFile=types/global_apollo.ts --includes=./src/queries/squeeth/**/*.ts  --endpoint 'https://api.thegraph.com/subgraphs/name/opynfinance/squeeth-ropsten'"
@@ -55,7 +57,9 @@
         "react-dom": "17.0.2",
         "react-query": "^3.34.0",
         "react-use": "^17.3.2",
+        "serve": "^13.0.2",
         "set-interval-async": "^2.0.3",
+        "start-server-and-test": "^1.14.0",
         "subscriptions-transport-ws": "^0.11.0",
         "web3": "^1.5.2"
     },
