@@ -5,7 +5,9 @@ on: [deployment_status]
 jobs:
   desktop:
     if: github.event.deployment_status.state == 'success'
-    working_directory: fontend
+    defaults:
+      run:
+        working-directory: fontend
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
