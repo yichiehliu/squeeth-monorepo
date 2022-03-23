@@ -24,11 +24,11 @@ jobs:
       - run: echo "SECRET_WORDS=${{ secrets.SECRET_WORDS }}" >> $GITHUB_ENV
       - run: echo "NETWORK_NAME=${{ secrets.NETWORK_NAME }}" >> $GITHUB_ENV
       - run: echo "CYPRESS_RECORD_KEY=${{ secrets.CYPRESS_RECORD_KEY }}" >> $GITHUB_ENV
-      - name: Cypress tests
+      - name: build
         with:
           working_directory: cypress
           build: yarn run build
-          start: yarn start
-          wait-on: "http://localhost:3000"
+        run: yarn start
+      - name: Run tests
+        wait-on: "http://localhost:3000"
         run: yarn run cypress:gh
-      - run: yarn run cypress:gh
