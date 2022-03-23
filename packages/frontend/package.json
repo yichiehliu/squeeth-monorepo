@@ -16,6 +16,8 @@
         "cypress:gh": "SECRET_WORDS='can, maple, scatter, onion, purchase, web, gorilla, grass, blur, play, scatter, dinner' NETWORK_NAME=ropsten synpress run --record --configFile cypress.json --config supportFile='cypress/support/index.js',pluginsFile='cypress/plugins/index.js' --group Desktop -b chromium",
         "start:server": "serve tests/test-dapp -p 3000",
         "test:e2e:ci": "start-server-and-test http-get://localhost:3000 'yarn run cypress'",
+        "test:e2e:ci": "start-server-and-test http-get://localhost:3000 'cypress'",
+        "test:e2e:ci": "start-server-and-test http-get://localhost:3000 cypress",
         "cypress:mobile:gh": "synpress run --record --configFile cypress.json --config supportFile='cypress/support/index.js',pluginsFile='cypress/plugins/index.js,viewportWidth=375,viewportHeight=667' --group Mobile -b chromium",
         "codegen:uniswap": "apollo client:codegen --target typescript --globalTypesFile=types/global_apollo.ts --includes=./src/queries/uniswap/**/*.ts  --endpoint 'https://api.thegraph.com/subgraphs/name/kmkoushik/uniswap-v3-ropsten'",
         "codegen:squeeth": "apollo client:codegen --target typescript --globalTypesFile=types/global_apollo.ts --includes=./src/queries/squeeth/**/*.ts  --endpoint 'https://api.thegraph.com/subgraphs/name/opynfinance/squeeth-ropsten'"
