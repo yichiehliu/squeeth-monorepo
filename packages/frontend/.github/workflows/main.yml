@@ -30,4 +30,4 @@ jobs:
           build: yarn run build
           start: yarn start
           wait-on: 'http://localhost:3000'
-      - run: yarn run cypress:gh
+        run: yarn run cypress:gh
