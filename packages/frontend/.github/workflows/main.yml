@@ -23,7 +23,7 @@ jobs:
       - run: echo "CYPRESS_RECORD_KEY=${{ secrets.CYPRESS_RECORD_KEY }}" >> $GITHUB_ENV
       - name: Cypress tests
         with:
-          working_directory: ~/squeeth/packages/fontend
+          working_directory: fontend/cypress
           build: yarn run build
           start: yarn start
           wait-on: 'http://localhost:3000'
