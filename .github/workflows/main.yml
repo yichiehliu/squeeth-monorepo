@@ -1,5 +1,5 @@
 name: Cypress Run
-on: [deployment_status]
+on: [push]
 
 defaults:
   run:
@@ -7,7 +7,6 @@ defaults:
 
 jobs:
   desktop:
-    if: github.event.deployment_status.state == 'success'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
