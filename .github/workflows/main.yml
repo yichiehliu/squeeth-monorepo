@@ -25,4 +25,12 @@ jobs:
       - run: echo "NETWORK_NAME=${{ secrets.NETWORK_NAME }}" >> $GITHUB_ENV
       - run: echo "CYPRESS_RECORD_KEY=${{ secrets.CYPRESS_RECORD_KEY }}" >> $GITHUB_ENV
       - run: yarn run build
-      - run: yarn run test:e2e:ci
+      - name: Cypress run
+        uses: cypress-io/github-action@v2
+        with:
+          build: yarn run build
+          start: yarn start
+          browser: chrome
+          wait-on: "http://localhost:3000"
+          working-directory: ./packages/frontend
+      - run: yarn run tests:e2e:ci

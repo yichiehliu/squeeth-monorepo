@@ -8,7 +8,7 @@
         "start": "next start",
         "lint": "next lint",
         "test": "jest --watch",
-        "cypress": "SECRET_WORDS='can, maple, scatter, onion, purchase, web, gorilla, grass, blur, play, scatter, dinner' NETWORK_NAME=ropsten dotenv -e .env.local -- synpress run --configFile cypress.json --config supportFile='cypress/support/index.js',pluginsFile='cypress/plugins/index.js' -b chrome",
+        "cypress": "SECRET_WORDS='can, maple, scatter, onion, purchase, web, gorilla, grass, blur, play, scatter, dinner' NETWORK_NAME=ropsten dotenv -e .env.local -- synpress run --configFile cypress.json --config supportFile='cypress/support/index.js',pluginsFile='cypress/plugins/index.js' --headed -b chrome",
         "cypress:mobile": "dotenv -e .env.local -- synpress run --configFile cypress.json --config supportFile='cypress/support/index.js',pluginsFile='cypress/plugins/index.js,viewportWidth=375,viewportHeight=667' --env guildName='Cypress Mobile Gang',guildUrlName='cypress-mobile-gang',dcInvite='https://discord.gg/G6VWkWJrzp',tgId='-1001689086791' -b chromium",
         "cypress:record": "dotenv -e .env.local -e .env.development.local -- synpress run --record --configFile cypress.json --config supportFile='cypress/support/index.js',pluginsFile='cypress/plugins/index.js' -b chromium",
         "cypress:mobile:record": "dotenv -e .env.local -e .env.development.local -- synpress run --record --configFile cypress.json --config supportFile='cypress/support/index.js',pluginsFile='cypress/plugins/index.js,viewportWidth=375,viewportHeight=667' -b chromium",
